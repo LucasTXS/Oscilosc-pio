@@ -1256,67 +1256,6 @@ int main()
 //		if((tipo != 'T') && (tipo != 't') && (tipo != 'B') && (tipo != 'b'))
 //			continue;
 
-//		//Seleciona o número do arquivo
-//		num_arquivo=SD_get_number_name(arquivo);
-//		
-//		UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-//		UART0_TxString("Number of file: "); IntToString(num_arquivo, arquivo); UART0_TxString(arquivo); UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-//		UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-//		
-//		//Seleciona o arquivo (1o cluster)
-//		next_cluster=SD_get_first_cluster(num_arquivo);
-//		
-//		UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-//		UART0_TxString("First cluster: "); IntToString(next_cluster, arquivo); UART0_TxString(arquivo); UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-//		UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-
-//		//Se é um arquivo inválido
-//		if(num_arquivo >= 40) continue;
-//		
-//		//Mostra o arquivo TXT
-//		if((tipo == 'T') || (tipo == 't'))
-//		{		
-//			UART0_TxString("Conteudo do arquivo lido: "); UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-//			UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-//			do
-//			{
-//				next_cluster=SD_open_file_TXT(next_cluster,SSI_2);
-//			}
-//			while(next_cluster!=0x0FFFFFFF && next_cluster!=0xFFFFFFFF);
-//		}
-//	
-//		//Mostra o arquivo BMP
-////		if((tipo == 'B') || (tipo == 'b'))
-////		next_cluster=SD_open_file_BMP(next_cluster, 1, SSI_2);	//1o setor do 1o cluster (cabeçalho)
-////		if(next_cluster!=0x0FFFFFFF && next_cluster!=0xFFFFFFFF)
-////		{
-////			UART0_TxString("Conteudo do arquivo lido: "); UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-////			UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-////			do
-////			{
-////				next_cluster=SD_open_file_BMP(next_cluster, 0, SSI_2);	//Demais clusters
-////			}
-////			while(next_cluster!=0x0FFFFFFF && next_cluster!=0xFFFFFFFF);
-////		}
-//		if((tipo == 'B') || (tipo == 'b'))
-//		{
-//			TransfBitmatFromSDCardToLCD(num_arquivo);
-//			UART0_TxString("Conteudo do arquivo lido transferido para o LCD TFT do MKII"); UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-//		}
-//		UART0_TxChar(0x0D); UART0_TxChar(0x0A);
-//	}
-	
-	while(1);
-	
-	return 0;
-}
-//*/
-
-
-
-
-
-
 
 
 
