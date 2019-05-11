@@ -630,13 +630,13 @@ int main()
 {
 	//Variáveis locais
 	unsigned char dado;
-	int16_t x, y, select;
+	int16_t x, y, select, txamos;
 	long adc;
 	long temp_int;
 	int pAtual, pAnt;
 	bool plot = false;
 	int nextPoint;
-	float v=0.10;
+	float grid;
 
 	//Setup
 	SysTick_Inicializa();
@@ -665,15 +665,16 @@ int main()
 	
 	pAtual = pAnt = getFunctionPoint(sinFunction,0.10)/2;
 	nextPoint = 0;
+	txamos = 10;
 	
-	BSP_LCD_DrawFastVLine(20, 11, 60, LCD_WHITE);
+	//BSP_LCD_DrawFastVLine(20, 11, 60, LCD_WHITE);
 	
 	while(1)
 	{
-		while(msTicks<10);
+		while(msTicks<txamos); // taxa de amostragem. time/div = 10 vezes o valor definido aqui
 		msTicks = 0;
 		
-		pAtual = getFunctionPoint(sinFunction,0.10)/2;
+		pAtual = getFunctionPoint(sinFunction,0.10*txamos/10)/2;
 		
 		if ((pAtual > 512) && (pAnt <=512) && (plot == false))
 		plot = true;
@@ -685,8 +686,18 @@ int main()
 		nextPoint = BSP_LCD_PlotIncrement();
 			
 		if (nextPoint == 0)
-		plot = false;
-	  }
+		{plot = false;}
+		
+		if ((nextPoint%10) == 9 )
+			{
+			for (y = 1; y<=9; y=y+1)
+				{
+				grid = 1023.0/10*y;
+				BSP_LCD_PlotPoint(grid, LCD_YELLOW);
+			//	BSP_LCD_PlotPoint(grid+1, LCD_BLACK);
+				}
+			}
+		}
 	pAnt=pAtual;
 }
 		//Lê o joystick da MKII
@@ -708,3 +719,4 @@ int main()
 //		BSP_LCD_PlotIncrement();
 
 }
+
